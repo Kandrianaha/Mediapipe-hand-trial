@@ -16,12 +16,12 @@ cap = cv2.VideoCapture(0)
 
 # Counting fingers function
 def count_fingers(landmarks):
-	fingers = 0
-	tips = [8, 12, 16, 20]
-	for tip in tips:
-		if landmarks.landmark[tip].y < landmarks.landmark[tip - 2].y:
-	fingers += 1
-	return fingers
+    fingers = 0
+    tips = [8, 12, 16, 20]
+    for tip in tips:
+        if landmarks.landmark[tip].y < landmarks.landmark[tip - 2].y:
+                fingers += 1
+    return fingers
 
 while True:
     ret, frame = cap.read()
@@ -46,10 +46,10 @@ while True:
                 hand_landmarks.landmark[4].y > hand_landmarks.landmark[1].y and
                 hand_landmarks.landmark[4].y > hand_landmarks.landmark[0].y):
                 cv2.putText(frame, 'Closed Hand', (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
-		count = count_fingers(hand_landmarks)
-		cv2.putTest(frame, f'Fingers: {count}', (10, 70), cv2.FONT_HERSHEY_SIMPLEX, 1 (255, 255, 0), 2)
-		if count == 0:
-			cv2.putText(frame, 'FLAP!', (200, 200), cv2.FONT_HERSHEY_SIMPLEX, 3, (0, 255, 0), 4)
+        count = count_fingers(hand_landmarks)
+        cv2.putText(frame, f'Fingers: {count}', (10, 70), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 0), 2)
+        if count == 0:
+            cv2.putText(frame, 'FLAP!', (200, 200), cv2.FONT_HERSHEY_SIMPLEX, 3, (0, 255, 0), 4)
 
 
     # Display the frame with hand tracking 
